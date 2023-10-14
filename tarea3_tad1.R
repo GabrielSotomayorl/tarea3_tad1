@@ -13,10 +13,11 @@ incomplete_info <- data.frame(area = character(),
                               stringsAsFactors = FALSE)
 
 for (i in dir(path = dir)) {
-  data <- read.csv(paste0(dir, i))
+  data <- read.csv(paste0(dir, i)) 
   colnames(data) <- tolower(colnames(data))
 
   data <- data %>% 
+    select(-x) %>% 
     pivot_longer(
       cols = starts_with("y"),
       names_to = "year",
